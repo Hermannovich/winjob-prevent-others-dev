@@ -1,5 +1,7 @@
-# Prevent others dev from be scam by WINJOB LLC 
+# Prevent others dev from be scam by WINJOB LLC from bangladesh.
 
+
+May be the WINJOB LLC identity has been stolen by bdatoz.
 
 I have worked for almost two months and half for this client and I have not get paid. But this not why I have posted these codes.
 
