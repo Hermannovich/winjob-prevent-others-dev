@@ -1,7 +1,7 @@
 # winjob prevent others dev from be scam
 
 
-I have worked for almost two weeks for this client and I have not get paid. But this not why I have posted these codes.
+I have worked for almost two months and half for this client and I have not get paid. But this not why I have posted these codes.
 
 
 I have posted this code because I do not want others devs to be scam by this client. 
