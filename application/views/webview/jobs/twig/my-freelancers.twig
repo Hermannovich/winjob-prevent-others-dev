@@ -1,0 +1,84 @@
+{% extends "webview/layout/twig/layout.twig" %}
+
+{% block title %}
+    {% if is_active_contract_page %}
+        {{ app_lang('text_job_title_active_contracts') }} - Winjob
+    {% else %}
+        {{ app_lang('text_job_my_staff') }} - Winjob
+    {% endif %}  
+{% endblock %}
+
+{% block styles %}
+    {{ parent() }}
+    
+    <link rel="stylesheet" href="{{ base_url("assets/css/pages/job-common.css") }}">
+    <link rel="stylesheet" href="{{ base_url("assets/css/pages/mystaff.css") }}">
+{% endblock %}
+
+{% block content %}
+    <section id="big_header" class="my_staff">
+	<div class="container">
+	    <div class="row ">
+	        <div class="col-md-3">
+                    <div class="row">
+                        <div class="col-md-10 nopadding">
+                            {% if is_active_contract_page %}
+                                {{ include('webview/jobs/partials/job-client-contracts-menu.twig', { active: true }, with_context = false) }}
+                            {% else %}
+                                {{ include('webview/jobs/partials/job-client-left-menu.twig', { mystaff: true }, with_context = false) }}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-9">
+		   <div class="row">
+                        
+                        {# top message #}
+                        {% set message       = app_lang('text_job_mystaff_hired')|format(nb_freelancer_hired) %}
+                        {% set empty_message = app_lang('text_job_mystaff_not_hired') %}
+                        {{ include('webview/jobs/partials/job-hirefeebar.twig', { number: nb_freelancer_hired, message: message , empty_message: empty_message }, with_context = false ) }}
+                       
+                        {% if jobs_accepted is defined %}
+                            {% for job in jobs_accepted %}
+                                
+                                {# specific the current page #}
+                                {% set page = 'mystaff' %}
+                                
+                                {# chat receiver id #}
+                                {% set chat_receiver_id      = job.fuser_id %}
+                                
+                                {# specific job and page variable values #}
+                                {% set job_id_encoded        = base64_encode(job.job_id) %}
+                                {% set fuser_id_encoded      = base64_encode(job.fuser_id) %}
+                                {% set bid_id_encoded        = base64_encode(job.bid_id) %}
+                                
+                                {# set profil_link           = base_url() ~ "applicants?user_id=" ~ fuser_id_encoded ~ "&job_id=" ~ job_id_encoded ~ "&bid_id=" ~ bid_id_encoded #}
+                                {% set job_detail_link   = base_url() ~ "contracts?fmJob=" ~ bid_id_encoded %}
+                                {% set end_contract_link = base_url() ~ "end-contract?fmJob=" ~ bid_id_encoded %}
+                                
+                                {# Specifics partials #}
+                                {% set specific_btn_template = 'webview/jobs/partials/job-payment-buttons.twig' %}
+                                {% set options_dropdown      = 'webview/jobs/partials/job-staff-dropdown.twig' %}
+                                {% set employerStatus =  webuser.isactive %}
+
+                                {# To display profil link pass profil_link variable to job-item named as profil_link #}
+                                {{ include('webview/jobs/partials/job-item.twig') }}
+                             {% endfor %}
+                        {% endif %}
+                   </div>
+                </div>
+            </div>
+        </div>
+    </section>
+                        
+    {{ include('webview/modals/message-conversion-modal.twig') }}
+{% endblock %}
+
+{% block js %}
+    
+    {# this variable defines the asset/modular/pages file to load #}
+    <script> var page = 'my-staff'; </script>
+    
+    <script data-main="{{ app_modular_js("winjob") }}" src="{{ app_modular_js("lib/require.dev.js") }}"></script>
+    
+{% endblock %}

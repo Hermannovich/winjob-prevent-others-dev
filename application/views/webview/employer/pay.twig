@@ -1,0 +1,111 @@
+{% extends "webview/layout/twig/layout.twig" %}
+
+{% block title %}  {{ app_lang('text_job_title_client_pay') }} - Winjob  {% endblock %}
+
+{% block styles %}
+    {{ parent() }}
+    
+    <link rel="stylesheet" href="{{ base_url("assets/css/jquery.datetimepicker.min.css") }}">
+    <link rel="stylesheet" href="{{ base_url("assets/css/pages/freelancer-balance.css") }}">
+{% endblock %}
+
+{% block content %}
+    <section id="speciliser-section" class="speciliser-area row">
+        
+        <h1 id="pageTitle" class="oHInline col-xs-12">
+            {{ app_lang('text_app_transaction_history') }}
+        </h1>
+        
+        {# Form filter #}
+        {{ include('webview/freelancer/partials/form-filter.twig') }}
+        
+        <div class="col-xs-12">
+            <table class="oTable custom_table_head table table-condensed" id="trxTable">
+                <thead>
+                    <tr>
+                        <th>{{ app_lang('text_app_transaction_history_date') }}</th>
+                        <th>{{ app_lang('text_app_transaction_history_type') }}</th>
+                        <th>{{ app_lang('text_app_transaction_history_desc') }}</th>
+                        <th>{{ app_lang('text_app_transaction_history_freelancer') }}</th>
+                        <th class="txtRight nowrap">{{ app_lang('text_app_transaction_history_amount') }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if payment_txns %}
+                        {% for payment in payment_txns %}
+                            {% set is_hourly = payment.job_type == constant('HOURLY_JOB_TYPE') %}
+                            <tr>
+                                <td>{{ app_date(payment.payment_create, 'D, M j, Y H:i:s') }}</td>
+                                <td>
+                                    {% if is_hourly %}
+                                        {{ app_lang('text_job_type_hourly_price') }}
+                                    {% else %}
+                                        {{ app_lang('text_job_type_fixed_price') }}
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if is_hourly %}
+                                        {{ payment.des }}
+                                    {% else %}
+                                        {{ payment.title ~ ' - ' ~ payment.des }}
+                                    {% endif %}
+                                </td>
+                                <td>{{ payment.webuser_fname ~ ' ' ~ payment.webuser_lname }}</td>
+                                <td class="txtRight nowrap">
+                                    ${{ payment.payment_gross }}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    {% endif %}
+                </tbody>
+            </table>
+                
+            <div class="cols">
+                <table style="width: 266px;" class="pull-right table table-condensed text-right">
+                    <caption>
+                        <strong style="padding-left: 153px;">{{ app_lang('text_job_statement_period') }}</strong>
+                        <p class="pull-right" style="margin-bottom: 10px;"> 
+                        {% if payment_txns is not empty  %}
+                            {% set last_item = payment_txns|length - 1 %}
+                            {{ payment_txns[last_item].payment_create|date('M j, Y') }} - {{ payment_txns[0].payment_create|date('M j, Y') }}
+                        {% endif %}
+                        </p>
+                    </caption>
+                    <tbody class="pull-right">
+                        <tr>
+                            <td class="text-left"><strong>{{ app_lang('text_job_statement_beginning_balance') }}</strong></td>
+                            <td><strong>$0.0</strong></td>
+                        </tr>
+                        <tr>
+                            <td class="text-left">{{ app_lang('text_job_statement_total_debits') }}</td>
+                            <td>$0.00</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left">{{ app_lang('text_job_statement_total_credits') }}</td>
+                            <td>$0.00</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left">{{ app_lang('text_job_statement_total_charges') }}</td>
+                            <td>$0.0</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>{{ app_lang('text_job_statement_ending_balance') }}</strong>
+                            </td>
+                            <td><strong>$0.0</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+    </section>
+{% endblock %}
+
+{% block js %}
+    
+    {# this variable defines the asset/modular/pages file to load #}
+    <script> var page = 'freelancer-balance'; </script>
+    
+    <script data-main="{{ app_modular_js("winjob") }}" src="{{ app_modular_js("lib/require.dev.js") }}"></script>
+    
+{% endblock %}

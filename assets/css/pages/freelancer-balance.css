@@ -1,0 +1,60 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 26 mars 2017, 20:42:41
+    Author     : Hermannovich <donfack.hermann@gmail.com>
+*/
+
+
+#speciliser-section{
+    background: #fff;
+    border-radius: 4px;
+    margin: 40px 0px;
+    padding: 30px;
+    border: 1px solid #ccc;
+    padding-top: 25px;
+}
+
+.custom_freelancer_balance_tebel_cx{
+    border: 2px solid #ccc;
+    text-align: center;
+    border-radius: 4px;
+}
+
+#pageTitle{
+    font-size: 22px;
+    font-family: calibri;
+    color: #494949;
+    margin-bottom: 9px;
+}
+
+#accountingHistoryFilter #datepicker-to,
+#accountingHistoryFilter #datepicker-from{
+    margin-left: 0;
+    margin-bottom: 0;
+}
+
+#accountingHistoryFilter.oFilterBar{
+    margin-bottom: 0;
+}
+
+#searchpaymentfilter{
+    margin-bottom: 5px;
+}
+
+@media (min-width: 992px){
+    .oDataNavBarTab-middle{
+        border-left: 2px solid #ccc;
+        border-right: 2px solid #ccc;
+    }
+    
+    #searchpaymentfilter .text-center{
+        padding-left: 0;
+    }
+}
+
+
+

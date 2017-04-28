@@ -1,0 +1,83 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 9 mars 2017, 08:00:19
+    Author     : Hermannovich <donfack.hermann@gmail.com>
+*/
+
+input.btn-default_activv{background:#028FFC;color:#fff;}
+input.btn-default_activv:hover{background:#286090;color:#fff;}
+input.btn-cancel{border:1px solid #CED0D4;color:#1CA7DB;background:#fff;}
+input.btn-cancel:hover{border:1px solid transparent;color:#fff;background:#286090;}
+
+.contract-section{
+    margin-top: 36px; 
+    margin-bottom: 40px; 
+    height: auto;
+    margin-left: 14px;
+}
+
+.payment-modal .modal-content{
+    padding: 10px;
+}
+
+.payment-modal .modal-content button.close,
+.payment-modal .modal-body,
+.payment-modal .modal-header{  border: none; }
+
+.payment-modal .modal-content button.close {
+    top: 30px;
+    position: absolute;
+    right: 20px;
+}
+
+button._job_btn_payment {
+    border: 1px solid #CED0D4;
+    color: #1CA7DB;
+    background: #fff;
+}
+
+button._job_btn_payment:hover {
+    border: 1px solid transparent;
+    color: #fff;
+    background: #286090;
+}
+
+.payment-modal label{
+    font-size: 16px;
+}
+
+.payment-modal input.amount{
+    font-size: 16px;
+    font-family: calibri;
+    margin-top: 5px;
+}
+
+.payment-modal .modal-header h4{
+    margin: 0px;
+    font-size: 17px;
+    font-weight: bold;
+}
+.payment-modal .modal-header h4 span{
+    font-size: 17px;
+}
+
+
+.payment-modal .modal-body{
+    padding-top: 5px;
+}
+
+.payment-modal form{
+    margin-bottom: 0;
+}
+    
+.payment-modal .btn-container{
+    margin-top: 10px;
+}
+
+.payment-modal .input-content{
+   margin: 10px 0; 
+}

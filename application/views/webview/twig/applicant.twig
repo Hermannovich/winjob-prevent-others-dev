@@ -1,0 +1,67 @@
+{% extends "webview/layout/twig/layout.twig" %}
+
+{% block title %}  {{ app_lang('text_job_title_applicant') }} - Winjob  {% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ site_url("assets/css/bootstrap.min.css") }}">
+    <link rel="stylesheet" href="{{ site_url("assets/css/font-awesome.min.css") }}">
+    <link rel="stylesheet" href="{{ site_url("assets/css/fonts.css") }}">
+    <link rel="stylesheet" href="{{ site_url("assets/css/header.css") }}">
+    <link rel="stylesheet" href="{{ site_url("assets/css/croppic.css") }}">
+    <link rel="stylesheet" href="{{ site_url("assets/css/footer.css") }}">
+    <link rel="stylesheet" href="{{ site_url("assets/css/bootstrap-socil.css") }}">
+    <link rel="stylesheet" href="{{ site_url("assets/css/normalize.css") }}">
+    <link rel="stylesheet" href="{{ site_url("assets/css/style.css") }}">
+    <link rel="stylesheet" href="{{ base_url("assets/css/pages/applicant.css") }}">
+{% endblock %}
+
+{% block content %}
+    <div class="row" id="interview-content">
+        {# The two following partials should be the header for all type of devices (mobile, tablette, and others. #}
+        {% include 'webview/twig/partials/header-applicant.twig' %}
+        
+        {% include 'webview/twig/partials/header-applicant-actions.twig' %}
+    </div>
+        
+    <div class="row" id="interview">
+        <div class="col-md-9 col-sm-9 col-xs-12">
+            <div class="header-border-x">
+                
+                {% set chat_infos = {'fname': fname, 'lname': lname, 'job_title': job_info['title'], 'conversation': conversation, 'user_timezone': user_timezone, 'crt_user_time': crt_user_time, 'images': images, 'bid_id': job_info['bid_id'], 'job_id': job_info['job_id'], 'user_id': job_info['user_id'], 'receiver_id': freelancer_id} %}
+                {{ include('webview/twig/partials/chat-interview.twig', chat_infos) }}
+                
+            </div>
+            <div class="col-md-12 col-sm-12 white-box bordered_cl">
+                <div class="cover_box">
+                    <p class="cover-letter">{{ app_lang('text_job_applicant_cover_letter') }}<br/></p>
+                    <p class="cover-letter-text">
+                        {{ job_info['cover_latter'] }}
+                    </p>
+                    <br/>
+                </div>
+                {% if f_attachments %}
+                    <div class="col-md-9">
+                        <label class="lab-details">{{ app_lang('text_job_applicant_attachments') }}</label>
+                    </div>
+                    <div class="col-md-12 text-justify page-label div-details">
+                        {% for attachment in f_attachments %}
+                            <a href="{{ site_url('jobs/download?dir=' ~ f_id ~ '/' ~ f_attachments[0]['tid'] ~ '&file=') }}{{ attachment|replace({'"': ''}) }}">{{ attachment|replace({'"': ''}) }}</a><br>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-3 col-xs-12 buttonsidefoure">
+            {{ include('webview/twig/partials/applicant-work-history.twig') }}            
+        </div>
+    </div>
+{% endblock %}
+
+{% block js %}
+    
+    {# this variable defines the asset/modular/pages file to load #}
+    <script> var page = 'applicant'; </script>
+    
+    <script data-main="{{ app_modular_js("winjob") }}" src="{{ app_modular_js("lib/require.dev.js") }}"></script>
+    
+{% endblock %}
