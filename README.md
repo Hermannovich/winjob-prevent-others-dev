@@ -1,4 +1,4 @@
-# WINJOB LLC prevent others dev from be scam
+# Prevent others dev from be scam by WINJOB LLC 
 
 
 I have worked for almost two months and half for this client and I have not get paid. But this not why I have posted these codes.
