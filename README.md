@@ -7,7 +7,7 @@ I have worked for almost two months and half for this client and I have not get 
 I have posted this code because I do not want others devs to be scam by this client. 
 
 
-He uses Internet M as skype ID, but his real skype ID is bdatoz. 
+He uses Internet M as skype ID, but his real skype ID is bdatoz. May be he will changed his skype ID. If you have a doubt just send me pull request I will help you.
 
 
 And I invite you to make a search on internet with this name, it seems to be link to a bangladesh user. 
